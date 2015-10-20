@@ -6,6 +6,7 @@ contributors:
   - ["Adam Brenecki", "https://github.com/adambrenecki"]
 translators:
   - ["Daniel Zendejas","https://github.com/DanielZendejas"]
+  - ["Everardo Medina","https://github.com/everblut"]
 ---
 Tutorial de YAML en español.
 
@@ -14,7 +15,7 @@ leído y escrito por humanos.
 
 Basa su funcionalidad en JSON, con la adición de líneas nuevas
 e indentación inspirada en Python. A diferencia de Python, YAML
-no permite tabs literales.
+no permite tabulaciones literales.
 
 ```yaml
 # Los comentarios en YAML se ven así.
@@ -38,24 +39,24 @@ llave con espacios: valor
 llave: "Un string, entre comillas."
 "Las llaves tambien pueden estar entre comillas.": "valor entre comillas"
 
-# Los strings de líneas múltiples pueden ser escritos 
+# Los strings de líneas múltiples pueden ser escritos
 # como un 'bloque literal' (usando pipes |)
 # o como un 'bloque doblado' (usando >)
 
 bloque_literal: |
 	Este bloque completo de texto será preservado como el valor de la llave
 	'bloque_literal', incluyendo los saltos de línea.
-	
-	Se continúa guardando la literal hasta que se cese la indentación. 
+
+	Se continúa guardando la literal hasta que se cese la indentación.
 		Cualquier línea que tenga más indentación, mantendrá los espacios dados
 		(por ejemplo, estas líneas se guardarán con cuatro espacios)
 
-nloque_doblado: >
+bloque_doblado: >
 	De la misma forma que el valor de 'bloque_literal', todas estas
 	líneas se guardarán como una sola literal, pero en esta ocasión todos los
 	saltos de línea serán reemplazados por espacio.
 
-	Las líneas en blanco, como la anterior, son convertidos a un salto de línea.
+	Las líneas en blanco, como la anterior, son convertidas a un salto de línea.
 
         Las líneas con mayor indentación guardan sus saltos de línea.
         Esta literal ocuparán dos líneas.
@@ -74,14 +75,14 @@ un_mapa_indentado:
 # Las llaves de los mapas no deben ser strings necesariamente
 0.25: una llave numérica
 
-# Las llaves también pueden ser objetos de multi línea, usando ? para indicar
-# el inicio de una llave
+# Las llaves también pueden ser objetos de multiples líneas,
+# usando ? para indicar el inicio de una llave
 ? |
     Esto es una llave
     que tiene múltiples líneas
 : y este es su valor
 
-# YAML tambien permite colecciones como llaves, pero muchos lenguajes de 
+# YAML tambien permite colecciones como llaves, pero muchos lenguajes de
 # programación se quejarán.
 
 # Las secuencias (equivalentes a listas o arreglos) se ven así:
@@ -96,8 +97,8 @@ una_secuencia:
         - Esta es una secuencia
         - ...dentro de otra secuencia
 
-# Dado que todo JSON está incluído dentro de YAML, también puedes escribir 
-# mapas con la sintaxis de JSON y secuencias: 
+# Dado que todo JSON está incluído dentro de YAML, también puedes escribir
+# mapas con la sintaxis de JSON y secuencias:
 mapa_de_json: {"llave": "valor"}
 secuencia_de_json: [3, 2, 1, "despegue"]
 
@@ -113,7 +114,7 @@ otra_ancla: *nombre_del_ancla
 
 # YAML también tiene tags, que puedes usar para declarar tipos explícitamente.
 string_explícito: !!str 0.5
-# Algunos parseadores implementar tags específicas del lenguaje, como el 
+# Algunos parseadores implementan tags específicas del lenguaje, como el
 # que se muestra a continuación, encargado de manejar números complejos en
 # Python:
 numero_complejo_python: !!python/complex 1+2j
@@ -122,13 +123,13 @@ numero_complejo_python: !!python/complex 1+2j
 # TIPOS EXTRAS EN YAML #
 ########################
 
-# Stirngs y números no son los únicos escalares que YAML puede entener.
-# YAML también puede parsear fechas en formato ISO .
+# Strings y números no son los únicos escalares que YAML puede entender.
+# YAML también puede parsear fechas en formato ISO.
 fechaHora: 2001-12-15T02:59:43.1Z
 fechaHora_con_espacios: 2001-12-14 21:59:43.10 -5
 fecha: 2002-12-14
 
-# La tag !!binary indica que un string es, en realidad, un blob
+# El tag !!binary indica que un string es en realidad un blob
 # representado en base-64.
 archivo_gif: !!binary |
     R0lGODlhDAAMAIQAAP//9/X17unp5WZmZgAAAOfn515eXvPz7Y6OjuDg4J+fn5
@@ -136,14 +137,15 @@ archivo_gif: !!binary |
     +f/++f/++f/++f/++f/++SH+Dk1hZGUgd2l0aCBHSU1QACwAAAAADAAMAAAFLC
     AgjoEwnuNAFOhpEMTRiggcz4BNJHrv/zCFcLiwMWYNG84BwwEeECcgggoBADs=
 
-# YAML también tiene un tipo set, que se ve de la siguiente forma:
+# YAML también soporta conjuntos usando el simbolo ?
+# y se ven de la siguiente forma:
 set:
     ? item1
     ? item2
     ? item3
 
-# Al igual que Python, los sets sólo son mapas con valores nulos.
-# El ejemplo de arriba es equivalente a: 
+# Al igual que Python, los conjuntos sólo son mapas con valores nulos.
+# El ejemplo de arriba es equivalente a:
 set2:
     item1: null
     item2: null
